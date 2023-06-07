@@ -29,44 +29,42 @@ public class DemoApplication {
 	// 그리고 Ioc Container는 클래스를 객체로 만들어서 내부에서 관리한다.
 	public static void main(String[] args) {
 
-		ApplicationContext applicationContext = SpringApplication.run(DemoApplication.class, args);
+//		ApplicationContext applicationContext =
+				SpringApplication.run(DemoApplication.class, args);
 
 		// 그 Container가 어떤 Bean 객체를 가지고 있는지 확인해보자.
-		for (String beanName : applicationContext.getBeanDefinitionNames()) {
-			System.out.println(beanName);
-		}
+//		for (String beanName : applicationContext.getBeanDefinitionNames()) {
+//			System.out.println(beanName);
+//		}
 	}
 
-	@GetMapping("/hello")
-	public String hello(@RequestParam(value = "name",defaultValue = "world") String name) {
-		return "Hello " + name;
-	}
-
-	@Bean
-	public CommandLineRunner demo(CustomerRepository repository) {
-		return args -> {
-			repository.save(new Customer("leo", "aa"));
-			repository.save(new Customer("you", "bb"));
-			repository.save(new Customer("jun", "cc"));
-			repository.save(new Customer("leo2", "aa"));
-
-			log.info("FindAll---------------------");
 
 
-			for (Customer customer : repository.findAll()) {
-				log.info(customer.toString());
-			}
-			log.info("");
-			log.info("findById---------------------");
-			Customer customer = repository.findById(1L);
-			log.info(customer.toString());
-			log.info("");
+//	@Bean
+//	public CommandLineRunner demo(CustomerRepository repository) {
+//		return args -> {
+//			repository.save(new Customer("leo", "aa"));
+//			repository.save(new Customer("you", "bb"));
+//			repository.save(new Customer("jun", "cc"));
+//			repository.save(new Customer("leo2", "aa"));
+//
+//			log.info("FindAll---------------------");
+//
+//
+//			for (Customer customer : repository.findAll()) {
+//				log.info(customer.toString());
+//			}
+//			log.info("");
+//			log.info("findById---------------------");
+//			Customer customer = repository.findById(1L);
+//			log.info(customer.toString());
+//			log.info("");
+//
+//			log.info("findByLastName---------------------");
+//			repository.findByLastName("aa").forEach(c -> {log.info(c.toString());});
+//			log.info("");
 
-			log.info("findByLastName---------------------");
-			repository.findByLastName("aa").forEach(c -> {log.info(c.toString());});
-			log.info("");
+//		};
 
-		};
-	}
 
 }
