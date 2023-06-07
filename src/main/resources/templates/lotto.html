@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lotto</title>
+</head>
+<body>
+<h2>Lotto 페이지입니다.</h2>
+<div>
+    <p th:each="item:${lottoList}" style="display:inline">[[${item}]] - </p>
+</div>
+
+<p><a href="/lotto">다시 추첨하기</a></p>
+<p><a href="/hits">hits 페이지로 이동</a></p>
+
+</body>
+</html>

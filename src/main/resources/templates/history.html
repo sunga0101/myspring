@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>History</title>
+</head>
+<body>
+<div th:unless="${isLottoList}">
+    <p>아직 기록이 없습니다.</p>
+</div>
+<div th:if="${isLottoList}">
+    <div th:each="cnt, cntStat: ${lottoCnt}">[[${cntStat.count}]]번째: [[${cnt}]]</div>
+</div>
+<a href="/hits">hits 페이지로 이동</a>
+</body>
+</html>
