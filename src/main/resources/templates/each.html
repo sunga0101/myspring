@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>For Each</title>
+</head>
+<body>
+<h1>Item List</h1>
+<div>
+  <p>여기에 List의 각 데이터가 담긴 채</p>
+<!--  목표 : List의 데이터 갯수 만큼 반복해서 p 요소를 생성하자 -->
+</div>
+<div>
+<!--    listOfStrings의 각각 하나씩이 item으로 할당해 들어간다-->
+    <p th:each="item: ${studentList.count}"> 반복된다! </p>
+    <p th:each="item: ${listOfStrings}">[[${item}]] 이다! </p>
+</div>
+<div>
+    <p th:each="student: ${studentList}">[[${student.name}]]의 이메일은 [[${student.email}]] 입니다</p>
+</div>
+</body>
+</html>
