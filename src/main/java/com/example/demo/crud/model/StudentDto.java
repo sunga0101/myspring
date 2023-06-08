@@ -1,6 +1,8 @@
 package com.example.demo.crud.model;
 
 public class StudentDto {
+    // Student 데이터로 StudentDto 생성
+
     private Long id;
     private String name;
     private String email;
@@ -35,6 +37,15 @@ public class StudentDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "StudentDto {" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 
 }
