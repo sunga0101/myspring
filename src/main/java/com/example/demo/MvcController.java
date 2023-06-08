@@ -8,35 +8,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 
 public class MvcController {
-    private int hitCount = 0;
-    static int lottoNum;
-    static List<Integer> lottoList; // 6개 숫자 들어있는 로또 리스트
+
+    private final LottoService lottoService; // final : 객체를 변화시키지 않겠다
+
+    public MvcController(LottoService lottoService) {
+        this.lottoService = lottoService;
+    }
+
     static List<List> lottoCnt = new ArrayList<>();
 
     @RequestMapping("/hits")
     public String hits(Model model) {
-        // 더미 데이터 먼저 넣어서 어떻게 나오는지 확인해보자
-        hitCount++;
-        model.addAttribute("hits", hitCount); // 처음엔 0 데이터 넣어줌
+        int hitcount = lottoService.addHit(); // model-controller 분리
+
+        model.addAttribute("hits", hitcount);
         return "hits";
     }
 
     @RequestMapping("/lotto")
     public String lotto(Model model) {
-        lottoList = new ArrayList<>();
+        List<Integer> lottoList = new ArrayList<>();
+        // 6개 숫자 들어있는 로또 리스트
+        Random random = new Random();
         for (int i = 0; i < 6; i++) {
-            lottoNum = (int) (((Math.random() * 100) % 45) + 1);
-            if (!lottoList.contains(lottoNum))
-                lottoList.add(lottoNum);
-            else i--; // 카운트 미포함
+            int randomNum = random.nextInt(1, 46);
+            if (!lottoList.contains(randomNum)) {
+                lottoList.add(randomNum);
+            } // range: 1~45
+            else i--; // 중복 숫자 카운트 미포함
         }
         lottoCnt.add(lottoList);
-        model.addAttribute("lottoList", lottoList);
 
+        model.addAttribute("lottoList", lottoList);
         return "lotto";
     }
 
@@ -68,8 +76,7 @@ public class MvcController {
     @RequestMapping("/is-logged-in")
     public String isLoggedIn(Model model) {
         model.addAttribute("isLoggedIn",
-                false); // true); // 조건부 렌더링
-        //  list.isEmpty() 로 만들수도 있음
+                false); // 조건부 렌더링
         return "if-unless";
     }
 

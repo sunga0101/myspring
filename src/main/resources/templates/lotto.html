@@ -7,7 +7,7 @@
 <body>
 <h2>Lotto 페이지입니다.</h2>
 <div>
-    <p th:each="item:${lottoList}" style="display:inline">[[${item}]] - </p>
+    <span th:each="num:${lottoList}" >[[${num}]] - </span>
 </div>
 
 <p><a href="/lotto">다시 추첨하기</a></p>
